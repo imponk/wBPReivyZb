@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Uploader Skor</title>
+
+  <link rel="stylesheet" href="style/style.css" />
+
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <aside class="controls">
+
+      <details class="control-group" open>
+        <summary>1. Upload & Latar Belakang</summary>
+        <div class="group-content">
+          <label>Upload Foto
+            <input type="file" id="upload" accept="image/*">
+          </label>
+          <label>Zoom Foto
+				<input id="zoomSlider" type="range" min="0.1" max="3" step="0.01" value="1">
+          </label>
+          <div class="fade-control">
+            <label><input type="checkbox" id="topFadeCheck" /> **Fade Hitam Atas**</label>
+            <label>Intensitas Atas
+              <input type="range" id="topFadeSlider" min="0" max="500" value="150" />
+            </label>
+          </div>
+          <div class="fade-control">
+            <label><input type="checkbox" id="bottomFadeCheck" /> **Fade Hitam Bawah**</label>
+            <label>Intensitas Bawah
+              <input type="range" id="bottomFadeSlider" min="0" max="800" value="150" />
+            </label>
+          </div>
+        </div>
+      </details>
+
+      <details class="control-group" open>
+        <summary>2. Status Pertandingan</summary>
+        <div class="group-content">
+          <label>Tipe Status
+            <select id="matchStatus">
+              <option value="assets/half-time.svg">Half-Time</option>
+              <option value="assets/full-time.svg">Full-Time</option>
+            </select>
+          </label>
+          <label>Geser Status X/Y
+            <div class="split">
+              <input type="range" id="statusXSlider" min="-800" max="800" step="1" value="0" title="Geser Status X" />
+              <input type="range" id="statusYSlider" min="-800" max="800" step="1" value="0" title="Geser Status Y" />
+            </div>
+          </label>
+        </div>
+      </details>
+      
+      <details class="control-group" open>
+        <summary>3. Skor & Tim</summary>
+        <div class="group-content">
+          <label>Skor
+            <input type="text" id="scoreInput" placeholder="0-0" value="0-0" />
+          </label>
+          <div class="split">
+            <label>Tim 1 (kiri)
+              <textarea id="team1Input" rows="3" placeholder="Nama Tim 1"></textarea>
+            </label>
+            <label>Tim 2 (kanan)
+              <textarea id="team2Input" rows="3" placeholder="Nama Tim 2"></textarea>
+            </label>
+          </div>
+          <hr>
+          <p class="group-description">Penyesuaian posisi untuk blok skor & tim:</p>
+          <label>Ukuran Font Skor
+            <input type="range" id="scoreFontSizeSlider" min="100" max="220" step="1" value="180" />
+            <small><span id="scoreFontSizeValue">180 pt</span></small>
+          </label>
+          <label>Jarak Vertikal Skor → Tim
+            <input type="range" id="scoreToTeamGapSlider" min="10" max="200" step="1" value="50" />
+            <small><span id="scoreToTeamGapValue">50 px</span></small>
+          </label>
+          <label>Jarak Horizontal Tim ↔ Skor
+            <input type="range" id="teamGapSlider" min="0" max="60" step="1" value="0" />
+            <small><span id="teamGapValue">0 px</span></small>
+          </label>
+          <label>Offset Pasangan Tim (Geser Kiri/Kanan)
+            <input type="range" id="teamOffsetXSlider" min="-300" max="300" step="1" value="-20" />
+            <small><span id="teamOffsetXValue">-20 px</span></small>
+          </label>
+          <label>Geser Blok Skor & Tim X/Y
+            <div class="split">
+              <input type="range" id="textGroupXSlider" min="-600" max="600" value="0" title="Geser Blok Skor & Tim X"/>
+              <input type="range" id="textGroupYSlider" min="-600" max="600" value="0" title="Geser Blok Skor & Tim Y"/>
+            </div>
+          </label>
+        </div>
+      </details>
+
+      <details class="control-group">
+        <summary>4. Judul & Subjudul</summary>
+        <div class="group-content">
+          <label>Judul (DM Serif Display)
+            <textarea id="titleInput" rows="3" placeholder="Judul (opsional)"></textarea>
+          </label>
+          <label>Subjudul (Proxima Nova)
+            <textarea id="subtitleInput" rows="3" placeholder="Subjudul"></textarea>
+          </label>
+           <hr>
+          <p class="group-description">Penyesuaian posisi untuk blok judul & subjudul:</p>
+           <label>Jarak Skor → Judul
+            <input type="range" id="scoreToTitleGapSlider" min="50" max="500" step="1" value="180" />
+            <small><span id="scoreToTitleGapValue">180 px</span></small>
+          </label>
+          <label>Geser Judul/Subjudul Kiri/Kanan
+            <input type="range" id="titleGroupXSlider" min="-400" max="400" step="1" value="0" />
+            <small><span id="titleGroupXValue">0 px</span></small>
+          </label>
+          <label>Opasitas Shadow Teks
+            <input type="range" id="shadowOpacitySlider" min="0" max="1" step="0.05" value="0.85" />
+            <small><span id="shadowOpacityValue">85%</span></small>
+          </label>
+        </div>
+      </details>
+
+      <details class="control-group">
+        <summary>5. Logo & Kredit</summary>
+        <div class="group-content">
+          <div class="split">
+            <label><input type="checkbox" id="invertJawaposTop" /> Invert JP (Atas)</label>
+            <label><input type="checkbox" id="invertJawaposBottom" /> Invert JP (Bawah)</label>
+          </div>
+          <div class="split">
+            <label><input type="checkbox" id="invertMedsos" /> Invert Logo Medsos</label>
+          </div>
+          <label>Kredit Foto
+            <input type="text" id="kreditInput" placeholder="Nama Fotografer" />
+          </label>
+        </div>
+      </details>
+
+      <div class="action-area">
+        <button id="download">Unduh Gambar</button>
+        <p id="status" class="status">Status: Siap</p>
+      </div>
+    </aside>
+
+    <main class="canvas-area">
+      <canvas id="canvas" width="1080" height="1350"></canvas>
+    </main>
+  </div>
+
+  <script src="js/main.js" defer></script>
+</body>
+</html>
